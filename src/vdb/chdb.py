@@ -3,7 +3,7 @@ from embeddings import OllamaNomicEmbed
 
     
 chroma = chromadb.PersistentClient(path="library/chroma.db")
-default_ef = OllamaNomicEmbed()
+default_ef = OllamaNomicEmbed
 
 def chroma_get_collection(name: str) -> chromadb.Collection:
     """
@@ -23,6 +23,7 @@ def chroma_get_or_create_collection(name: str) -> chromadb.Collection:
     
     return collection
 
+collection = chroma_get_or_create_collection("Test1")
 
 def chroma_delete_collection(name: str) -> None:
     """

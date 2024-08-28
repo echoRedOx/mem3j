@@ -30,7 +30,7 @@ class Message:
         Converts a Message object to a string that can be sent to the model.
 
         :param message: The Message object to convert.
-        :return: A string that can be sent to the model.
+        :return: A string better suited for prompt input.
         """
         
         return f"<|im_start|>{self.speaker} (Timestamp: {self.timestamp}): \n{self.content}<|im_end|>"
@@ -40,7 +40,7 @@ class Message:
         Converts a Message object to a string more suitable for context recall.
 
         :param message: The Message object to convert.
-        :return: A string that can be sent to the model.
+        :return: A string better suited for prompt input.
         """
         return f"{self.speaker} @ {self.timestamp}: {self.content}"
 
@@ -67,6 +67,9 @@ class Turn:
 
 @dataclass
 class Conversation:
+    """
+    Class representing the collection of turns associated with an interaction between 2 or more participants (can be self).
+    """
     uuid: str
     created_at: str
     last_active: str
