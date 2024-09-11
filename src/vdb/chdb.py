@@ -27,13 +27,12 @@ class ChromaHandler:
         except Exception as e:
             raise RuntimeError(f"Error accessing collection {collection_name}: {e}")
 
-    def switch_collection(self, collection_name: str):
+    def change_active_collection(self, collection_name: str):
         self.active_collection = self.collection_get_or_create(collection_name)
 
-    def add_to_collection(self, documents: list[str], ids: list[str], metadatas: list[dict] = None, embedding_function=None):
-        if not documents or not ids:
-            raise ValueError("Both documents and ids must be provided.")
-
+    def add_to_collection(self, documents: list[str], ids: list[str], metadatas: list[dict], embedding_function=None):
+        if not documents or not ids or not metadatas:
+            raise ValueError("Documents, ids and metadatas must be provided.")
         if embedding_function is None:
             embedding_function = self.default_ef
         
@@ -60,7 +59,6 @@ class ChromaHandler:
             return "No results found."
         formatted_output = ""
         for result in chroma_results["documents"]:
-            # Join the list into a string if the result is a list
             if isinstance(result, list):
                 result = " ".join(result)
 

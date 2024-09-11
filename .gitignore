@@ -1,3 +1,4 @@
 library/
 __pycache__
 library/chroma.db/chroma.sqlite3
+*.egg-info/
