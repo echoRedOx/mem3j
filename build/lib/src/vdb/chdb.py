@@ -63,7 +63,7 @@ class ChromaHandler:
                 result = " ".join(result)
 
         # Split the result into components (sender, timestamp, message)
-        components = result.split(" @ ") 
+        components = result.split(" @ ")
         sender = components[0].strip()
         timestamp = components[1].strip()
         message = " @ ".join(components[2:]).strip()
